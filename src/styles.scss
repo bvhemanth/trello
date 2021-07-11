@@ -5,7 +5,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 .cross{
     background: none;
     border: none;
-    color:red;
+    color: #000;
+    font-weight: bold;
     &:hover{
         cursor: pointer;
     }   

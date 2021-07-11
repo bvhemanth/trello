@@ -1,10 +1,5 @@
 .head {
     text-align: right;
-}
-
-.list-container {
-    display: flex;
-    flex-direction: row;
     margin: 10px;
 }
 
@@ -15,14 +10,17 @@
         margin-left: 5px;
     }
     &__list {
+        background: #ff4081;
         padding: 10px;
         max-width: 100%;
         border: solid 1px #ccc;
         min-height: 60px;
         display: block;
-        background: #fafafa;
         border-radius: 4px;
         overflow: hidden;
+    }
+    &__list-empty{
+        text-align: center;
     }
     &__list-item {
         margin: 5px;
@@ -32,7 +30,11 @@
     }
 }
 
-
+.list-container {
+    display: flex;
+    flex-direction: row;
+    margin: 10px;
+}
 
 .cdk-drag-preview {
     box-sizing: border-box;

@@ -20,6 +20,7 @@ export class CardComponent implements OnInit {
   }
 
   removeT(idx:any,tdx:any){
+    
     let data:any={idx:idx,tdx:tdx}
     this.sendindex.emit(data);
   }
