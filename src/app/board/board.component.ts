@@ -37,6 +37,11 @@ export class BoardComponent implements OnInit {
     this.lists[p].items.splice(c,1);
     this.setStore()
   }
+
+  removeCard(data:any){
+    console.log(data)
+  }
+  
   drop(event: CdkDragDrop<string[]>,index:number) {
     if (event.previousContainer === event.container) {
       moveItemInArray(
