@@ -15,7 +15,7 @@ export class BoardComponent implements OnInit {
 
   ngOnInit(): void {
     let previous:any = localStorage.getItem('lists');
-    if(JSON.parse(previous).length>0){
+    if(JSON.parse(previous)){
       this.lists=JSON.parse(previous);
     }
   }
@@ -25,7 +25,7 @@ export class BoardComponent implements OnInit {
     this.setStore();
   }
   onSubmit(newItemForm: NgForm,i:number) {
-    this.lists[i]['items'].push(newItemForm.value.newItem);
+    this.lists[i]['items'].push({item:newItemForm.value.newItem,createdAt:new Date()});
     this.setStore();
     newItemForm.reset();
   }
@@ -52,8 +52,17 @@ export class BoardComponent implements OnInit {
         event.currentIndex);
         this.setStore();
     }
+    this.sort(index)
   }
   setStore(){
     localStorage.setItem('lists',JSON.stringify(this.lists))
+  }
+  sort(data:any){
+    this.lists[data].items.sort(function (a:any, b:any) {
+      var dateA = new Date(a.createdAt).getTime();
+      var dateB = new Date(b.createdAt).getTime();
+      return dateA - dateB ;
+    });
+    this.setStore()
   }
 }

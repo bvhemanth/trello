@@ -3,19 +3,18 @@
 </div>
 
 <div class="list-container" cdkDropListGroup>
-    <div *ngFor="let list of lists;let i = index" >
+    <div *ngFor="let list of lists;let idx = index" >
         <div class="container">
-            
-            <div class="list" cdkDropList [cdkDropListData]="list.items" (cdkDropListDropped)="drop($event,i)">
-                <button class="cross" (click)="removeC(i)">X</button>
-                <mat-card class="list-item" *ngFor="let item of list.items;let t = index" cdkDrag>
-                        <button class="cross" (click)="removeT(i,t)">X</button>
+            <div class="list" cdkDropList [cdkDropListData]="list.items" (cdkDropListDropped)="drop($event,idx)">
+                <button class="cross" (click)="removeC(idx)">X</button>
+                <mat-card class="list-item" *ngFor="let item of list.items;let tdx = index" cdkDrag>
+                    <button class="cross" (click)="removeT(idx,tdx)">X</button>
                     <mat-card-content>
-                        <p>{{item}}</p>
+                        <app-card [item]="item.item" [date]="item.createdAt"></app-card>
                     </mat-card-content>
                 </mat-card>
             </div>
-            <form #newItemForm="ngForm" (ngSubmit)="onSubmit(newItemForm, i)">
+            <form #newItemForm="ngForm" (ngSubmit)="onSubmit(newItemForm, idx)">
                 <mat-form-field>
                     <input matInput name="newItem" ngModel type="text" placeholder="Enter a new item" required>
                 </mat-form-field>
