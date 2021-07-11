@@ -1,0 +1,26 @@
+<div class="head">
+    <button (click)="addList()" mat-raised-button color="secondary">Add List</button>
+</div>
+
+<div class="list-container" cdkDropListGroup>
+    <div *ngFor="let list of lists;let i = index" >
+        <div class="container">
+            
+            <div class="list" cdkDropList [cdkDropListData]="list.items" (cdkDropListDropped)="drop($event,i)">
+                <button class="cross" (click)="removeC(i)">X</button>
+                <mat-card class="list-item" *ngFor="let item of list.items;let t = index" cdkDrag>
+                        <button class="cross" (click)="removeT(i,t)">X</button>
+                    <mat-card-content>
+                        <p>{{item}}</p>
+                    </mat-card-content>
+                </mat-card>
+            </div>
+            <form #newItemForm="ngForm" (ngSubmit)="onSubmit(newItemForm, i)">
+                <mat-form-field>
+                    <input matInput name="newItem" ngModel type="text" placeholder="Enter a new item" required>
+                </mat-form-field>
+                <button mat-raised-button type="submit" color="accent" [disabled]="!newItemForm.valid">Add Item</button>
+            </form>
+        </div>
+    </div>
+</div>
